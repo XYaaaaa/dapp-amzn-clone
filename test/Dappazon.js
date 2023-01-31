@@ -31,6 +31,12 @@ describe("Dappazon", () => {
     let transaction
 
     const ID = 1
+    const NAME = "Shoes"
+    const CATEGORY = "Clothing"
+    const IMAGE = "https://ipfs.io/ipfs/QmTYEboq8raiBs7GTUg2yLXB3PMz6HuBNgNfSZBx5Msztg/shoes.jpg"
+    const COST = tokens(1)
+    const RATING = 4
+    const STOCK = 5
     
 
     beforeEach(async () => {
