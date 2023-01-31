@@ -22,9 +22,34 @@ describe("Dappazon", () => {
   })
 
   describe("Deployment", () =>{
-
     it('Sets the owner', async() => {
       expect(await dappazon.owner()).to.equal(deployer.address)
+    })
+
+  describe("Listing", () =>{
+
+    let transaction
+
+    const ID = 1
+    
+
+    beforeEach(async () => {
+      transaction = await dappazon.connect(deployer).list(
+        ID,
+        "Shoes",
+        "Clothing",
+        "IMAGE",
+        1,
+        4,
+        5
+      )
+
+      await transaction.wait()
+    })
+    
+    it('returns item attributes', async ()=>{
+      const item = await dappazon.item(ID)
+      expect(item.id).to.equal(ID)
     })
 
     it('has a name', async ()=>{
@@ -32,4 +57,5 @@ describe("Dappazon", () => {
       expect(name).to.equal("Dappazon")
     })
   })
+})
 })
