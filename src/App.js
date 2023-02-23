@@ -14,11 +14,24 @@ import config from './config.json'
 
 function App() {
 
+  const [account, setAccount] = useState(null) //set account state
+
+  const loadBlockchainData = async() => {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
+    const account = ethers.utils.getAddress(accounts[0])
+    setAccount(account)
+  }
+
+  useEffect(() => {
+    loadBlockchainData()
+  }, [])
+
+
   return (
     <div>
 
       <h2>Welcome to Dappazon</h2>
-
+      <p>{account}</p>
     </div>
   );
 }
