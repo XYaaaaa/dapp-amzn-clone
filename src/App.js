@@ -29,9 +29,10 @@ function App() {
 
   return (
     <div>
-
+      <Navigation account={account}/>
+      
       <h2>Welcome to Dappazon</h2>
-      <p>{account}</p>
+      
     </div>
   );
 }
