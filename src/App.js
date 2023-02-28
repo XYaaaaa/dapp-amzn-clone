@@ -14,12 +14,17 @@ import config from './config.json'
 
 function App() {
 
+  const [provider,setProvider] = useState(null)
   const [account, setAccount] = useState(null) //set account state
 
   const loadBlockchainData = async() => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
-    const account = ethers.utils.getAddress(accounts[0])
-    setAccount(account)
+    //connect blockchain
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    setProvider(provider)
+
+    //connect to smart contracts
+    const network = await provider.getNetwork()
+    console.log(network)
   }
 
   useEffect(() => {
@@ -31,7 +36,7 @@ function App() {
     <div>
       <Navigation account={account}/>
       
-      <h2>Welcome to Dappazon</h2>
+      <h2>Dappazon best sellers</h2>
       
     </div>
   );
